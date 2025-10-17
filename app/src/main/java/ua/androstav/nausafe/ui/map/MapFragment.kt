@@ -1,20 +1,17 @@
-package ua.androstav.nausafe.ui.dashboard
+package ua.androstav.nausafe.ui.map
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import ua.androstav.nausafe.databinding.FragmentDashboardBinding
+import ua.androstav.nausafe.databinding.FragmentMapBinding
 
 class MapFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentMapBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,16 +19,17 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(MapViewModel::class.java)
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
+        val root = binding.root
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Кнопка відкриття карти в Google Maps
+        binding.btnOpenMaps.setOnClickListener {
+            val mapIntent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://maps.google.com/?q=Національний+авіаційний+університет,+Київ")
+            }
+            startActivity(mapIntent)
         }
+
         return root
     }
 

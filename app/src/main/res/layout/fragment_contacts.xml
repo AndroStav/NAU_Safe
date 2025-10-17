@@ -1,22 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.contacts.ContactsFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_contacts_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Корисні контакти"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/text_emergency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Служба порятунку: 101"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/text_contacts_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/button_call"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Зателефонувати"
+            app:layout_constraintTop_toBottomOf="@id/text_emergency"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/text_university"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Національний авіаційний університет\nпр. Любомира Гузара, 1, Київ"
+            android:textSize="18sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/button_call"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/button_open_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Показати на карті"
+            app:layout_constraintTop_toBottomOf="@id/text_university"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import ua.androstav.nausafe.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,16 +18,29 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Статичний список інструкцій
+        val instructions = listOf(
+            "🔥 Пожежа — негайно залиште приміщення, не користуйтесь ліфтом.",
+            "🚨 Повітряна тривога — перейдіть до найближчого укриття.",
+            "💉 Травма або нещасний випадок — зверніться до медпункту або зателефонуйте 103.",
+            "⚡ Відключення електрики — залишайтесь спокійними, дотримуйтесь інструкцій адміністрації."
+        )
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            instructions
+        )
+        binding.instructionList.adapter = adapter
+
+        // Кнопка "Оновити" — просто показує оновлення списку (для прикладу)
+        binding.btnRefresh.setOnClickListener {
+            binding.instructionList.adapter = adapter
         }
+
         return root
     }
 
