@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ua.androstav.nausafe.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class ContactsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
@@ -23,7 +23,7 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+            ViewModelProvider(this).get(ContactsViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
