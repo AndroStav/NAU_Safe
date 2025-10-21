@@ -1,11 +1,11 @@
 package ua.androstav.nausafe.ui.contacts
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ua.androstav.nausafe.databinding.ItemContactBinding
+import androidx.core.net.toUri
 
 class ContactsAdapter(private val contacts: List<Contact>) :
     RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
@@ -25,7 +25,7 @@ class ContactsAdapter(private val contacts: List<Contact>) :
 
         holder.binding.buttonCall.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${contact.phone}")
+            intent.data = "tel:${contact.phone}".toUri()
             holder.itemView.context.startActivity(intent)
         }
     }
