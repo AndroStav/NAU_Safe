@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/map_nau_1"
-            android:contentDescription="Карта укриттів НАУ 1"
+            android:contentDescription="@string/map_nau_1"
             android:layout_marginBottom="12dp"
             android:scaleType="fitCenter" />
 
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/map_nau_2"
-            android:contentDescription="Карта укриттів НАУ 2"
+            android:contentDescription="@string/map_nau_2"
             android:scaleType="fitCenter" />
 
     </LinearLayout>
