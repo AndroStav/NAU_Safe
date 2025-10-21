@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_map">Map</string>
     <string name="title_contacts">Contacts</string>
+    <string name="map_description">Карта розташування об’єктів</string>
 </resources>
