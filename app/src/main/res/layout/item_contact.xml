@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="Служба порятунку"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"/>
 
             <TextView
                 android:id="@+id/contact_phone"
