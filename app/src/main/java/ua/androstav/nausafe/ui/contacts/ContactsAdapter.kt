@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ua.androstav.nausafe.databinding.ItemContactBinding
+import ua.androstav.nausafe.data.ContactEntity
 import androidx.core.net.toUri
 
-class ContactsAdapter(private val contacts: List<Contact>) :
+class ContactsAdapter(private val contacts: List<ContactEntity>) :
     RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
     inner class ContactViewHolder(val binding: ItemContactBinding) :

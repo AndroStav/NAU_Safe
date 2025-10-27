@@ -1,13 +1,35 @@
 package ua.androstav.nausafe.ui.contacts
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import ua.androstav.nausafe.data.AppDB
+import ua.androstav.nausafe.data.ContactEntity
+import ua.androstav.nausafe.data.ContactRepository
 
-class ContactsViewModel : ViewModel() {
+class ContactsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is contacts Fragment"
+    private val repository: ContactRepository
+    val allContacts: LiveData<List<ContactEntity>>
+
+    init {
+        val dao = AppDB.getDatabase(application).contactDao()
+        repository = ContactRepository(dao)
+        allContacts = repository.allContacts
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (repository.getAllOnce().isEmpty()) {
+                val defaultContacts = listOf(
+                    ContactEntity(name = "ДСНС (пожежна служба)", phone = "101"),
+                    ContactEntity(name = "Поліція", phone = "102"),
+                    ContactEntity(name = "Швидка допомога", phone = "103"),
+                    ContactEntity(name = "Адміністрація НАУ", phone = "+380442062333")
+                )
+                repository.insertAll(defaultContacts)
+            }
+        }
     }
-    val text: LiveData<String> = _text
 }

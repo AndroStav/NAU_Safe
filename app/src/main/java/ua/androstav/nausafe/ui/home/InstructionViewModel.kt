@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ua.androstav.nausafe.data.Instruction
-import ua.androstav.nausafe.data.InstructionDatabase
+import ua.androstav.nausafe.data.AppDB
 import ua.androstav.nausafe.data.InstructionRepository
 
 class InstructionViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,7 +16,7 @@ class InstructionViewModel(application: Application) : AndroidViewModel(applicat
     val allInstructions: LiveData<List<Instruction>>
 
     init {
-        val dao = InstructionDatabase.getDatabase(application).instructionDao()
+        val dao = AppDB.getDatabase(application).instructionDao()
         repository = InstructionRepository(dao)
         allInstructions = repository.allInstructions
 
