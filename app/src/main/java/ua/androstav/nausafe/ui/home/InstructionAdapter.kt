@@ -8,9 +8,11 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ua.androstav.nausafe.R
+import ua.androstav.nausafe.data.Instruction
 
-class InstructionAdapter(private val instructions: List<Instruction>) :
-    RecyclerView.Adapter<InstructionAdapter.ViewHolder>() {
+class InstructionAdapter(
+    private var instructions: List<Instruction>
+) : RecyclerView.Adapter<InstructionAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.textTitle)
@@ -24,13 +26,12 @@ class InstructionAdapter(private val instructions: List<Instruction>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val instruction = instructions[position]
-
         holder.title.text = instruction.title
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("title", instruction.title)
-                putString("content", instruction.content) // тут видно content
+                putString("content", instruction.content)
             }
             it.findNavController().navigate(
                 R.id.action_navigation_home_to_instructionDetailFragment,
@@ -40,4 +41,9 @@ class InstructionAdapter(private val instructions: List<Instruction>) :
     }
 
     override fun getItemCount() = instructions.size
+
+    fun updateData(newInstructions: List<Instruction>) {
+        instructions = newInstructions
+        notifyDataSetChanged()
+    }
 }
