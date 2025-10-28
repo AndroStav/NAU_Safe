@@ -23,10 +23,9 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
         viewModelScope.launch(Dispatchers.IO) {
             if (repository.getAllOnce().isEmpty()) {
                 val defaultContacts = listOf(
-                    ContactEntity(name = "ДСНС (пожежна служба)", phone = "101"),
+                    ContactEntity(name = "Пожежна служба", phone = "101"),
                     ContactEntity(name = "Поліція", phone = "102"),
-                    ContactEntity(name = "Швидка допомога", phone = "103"),
-                    ContactEntity(name = "Адміністрація НАУ", phone = "+380442062333")
+                    ContactEntity(name = "Швидка допомога", phone = "103")
                 )
                 repository.insertAll(defaultContacts)
             }
