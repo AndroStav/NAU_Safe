@@ -1,0 +1,760 @@
+@startuml
+class ua.androstav.nausafe.data.Instruction {
+- int id
+- java.lang.String title
+- java.lang.String content
++ int getId()
++ java.lang.String getTitle()
++ java.lang.String getContent()
++ int component1()
++ java.lang.String component2()
++ java.lang.String component3()
++ ua.androstav.nausafe.data.Instruction copy(int,java.lang.String,java.lang.String)
++ boolean equals(java.lang.Object)
++ int hashCode()
++ java.lang.String toString()
+}
+
+
+class ua.androstav.nausafe.data.ContactRepository {
+- ua.androstav.nausafe.data.ContactDao dao
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> allContacts
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAllContacts()
++ java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.ContactEntity>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
++ java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.ContactEntity>>)
+}
+
+
+class ua.androstav.nausafe.MainActivity {
+- ua.androstav.nausafe.databinding.ActivityMainBinding binding
+# void onCreate(android.os.Bundle)
+}
+
+
+class ua.androstav.nausafe.ui.map.MapFragment {
+- FragmentMapBinding? _binding
+-  binding
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.data.ContactEntity {
+- int id
+- java.lang.String name
+- java.lang.String phone
++ int getId()
++ java.lang.String getName()
++ java.lang.String getPhone()
++ int component1()
++ java.lang.String component2()
++ java.lang.String component3()
++ ua.androstav.nausafe.data.ContactEntity copy(int,java.lang.String,java.lang.String)
++ boolean equals(java.lang.Object)
++ int hashCode()
++ java.lang.String toString()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionViewModel {
+- InstructionRepository repository
++ LiveData<List<Instruction>> allInstructions
+}
+
+class ua.androstav.nausafe.databinding.ActivityMainBinding {
+- ConstraintLayout rootView
++ ConstraintLayout container
++ BottomNavigationView navView
++ ConstraintLayout getRoot()
++ {static} ActivityMainBinding inflate(LayoutInflater)
++ {static} ActivityMainBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityMainBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.data.ContactRepository {
++ LiveData<List<ContactEntity>> allContacts
++ void insertAll(List<ContactEntity>)
++ List<ContactEntity> getAllOnce()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionDetailFragment {
+- ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding _binding
+- ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding getBinding()
++ void onCreate(android.os.Bundle)
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onViewCreated(android.view.View,android.os.Bundle)
++ boolean onOptionsItemSelected(android.view.MenuItem)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionDetailFragment {
+- FragmentInstructionDetailBinding? _binding
+-  binding
++ void onCreate(Bundle?)
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
++ Boolean onOptionsItemSelected(MenuItem)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter {
+- java.util.List<ua.androstav.nausafe.data.ContactEntity> contacts
++ ua.androstav.nausafe.ui.contacts.ContactsAdapter.ContactViewHolder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(ua.androstav.nausafe.ui.contacts.ContactsAdapter.ContactViewHolder,int)
++ int getItemCount()
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder {
+- ua.androstav.nausafe.databinding.ItemContactBinding binding
++ ua.androstav.nausafe.databinding.ItemContactBinding getBinding()
+}
+
+
+class ua.androstav.nausafe.ui.map.MapFragment {
+- ua.androstav.nausafe.databinding.FragmentMapBinding _binding
+- ua.androstav.nausafe.databinding.FragmentMapBinding getBinding()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.data.InstructionRepository {
++ LiveData<List<Instruction>> allInstructions
++ void insertAll(List<Instruction>)
++ List<Instruction> getAllOnce()
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsFragment {
+- ua.androstav.nausafe.databinding.FragmentContactsBinding _binding
+- kotlin.Lazy viewModel$delegate
+- ua.androstav.nausafe.databinding.FragmentContactsBinding getBinding()
+- ua.androstav.nausafe.ui.contacts.ContactsViewModel getViewModel()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.data.AppDB$Companion {
+- AppDB? INSTANCE
++ AppDB getDatabase(Context)
+}
+
+
+abstract class ua.androstav.nausafe.data.AppDB {
++ InstructionDao instructionDao()
++ ContactDao contactDao()
+}
+
+class ua.androstav.nausafe.databinding.ItemContactBinding {
+- CardView rootView
++ Button buttonCall
++ ImageView contactIcon
++ TextView contactName
++ TextView contactPhone
++ CardView getRoot()
++ {static} ItemContactBinding inflate(LayoutInflater)
++ {static} ItemContactBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemContactBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsViewModel {
+- ua.androstav.nausafe.data.ContactRepository repository
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> allContacts
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAllContacts()
+}
+
+
+class ua.androstav.nausafe.databinding.FragmentMapBinding {
+- ScrollView rootView
++ PhotoView mapImage1
++ PhotoView mapImage2
++ ScrollView getRoot()
++ {static} FragmentMapBinding inflate(LayoutInflater)
++ {static} FragmentMapBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentMapBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.data.Instruction {
+- int id
+- java.lang.String title
+- java.lang.String content
++ int getId()
++ java.lang.String getTitle()
++ java.lang.String getContent()
++ int component1()
++ java.lang.String component2()
++ java.lang.String component3()
++ ua.androstav.nausafe.data.Instruction copy(int,java.lang.String,java.lang.String)
++ boolean equals(java.lang.Object)
++ int hashCode()
++ java.lang.String toString()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionAdapter {
+- java.util.List<ua.androstav.nausafe.data.Instruction> instructions
++ ua.androstav.nausafe.ui.home.InstructionAdapter.ViewHolder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(ua.androstav.nausafe.ui.home.InstructionAdapter.ViewHolder,int)
++ int getItemCount()
++ void updateData(java.util.List<ua.androstav.nausafe.data.Instruction>)
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder {
+- android.widget.TextView title
++ android.widget.TextView getTitle()
+}
+
+
+interface ua.androstav.nausafe.data.InstructionDao {
++ {abstract}androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAll()
++ {abstract}java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.Instruction>>)
++ {abstract}java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.Instruction>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
+}
+
+class ua.androstav.nausafe.ui.map.MapViewModel {
+-  _text
++ LiveData<String> text
+}
+
+class ua.androstav.nausafe.ui.home.HomeFragment {
+- InstructionViewModel viewModel
+- InstructionAdapter adapter
++ View? onCreateView(LayoutInflater,ViewGroup?,Bundle?)
+}
+
+
+class ua.androstav.nausafe.data.InstructionDao_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<Instruction> __insertionAdapterOfInstruction
++ Object insertAll(List<Instruction>,Continuation<? super Unit>)
++ LiveData<List<Instruction>> getAll()
++ Object getAllOnce(Continuation<? super List<Instruction>>)
++ {static} List<Class<?>> getRequiredConverters()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionViewModel {
+- ua.androstav.nausafe.data.InstructionRepository repository
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> allInstructions
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAllInstructions()
+}
+
+
+interface ua.androstav.nausafe.data.InstructionDao {
++ LiveData<List<Instruction>> getAll()
++ List<Instruction> getAllOnce()
++ void insertAll(List<Instruction>)
+}
+
+class ua.androstav.nausafe.MainActivity {
+- ActivityMainBinding binding
++ void onCreate(Bundle?)
+}
+
+
+class ua.androstav.nausafe.databinding.FragmentHomeBinding {
+- ConstraintLayout rootView
++ RecyclerView recyclerInstructions
++ ConstraintLayout getRoot()
++ {static} FragmentHomeBinding inflate(LayoutInflater)
++ {static} FragmentHomeBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentHomeBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder {
++ TextView title
+}
+
+class ua.androstav.nausafe.ui.home.InstructionAdapter {
++ ViewHolder onCreateViewHolder(ViewGroup,Int)
++ void onBindViewHolder(ViewHolder,Int)
++ void getItemCount()
++ void updateData(List<Instruction>)
+}
+
+class ua.androstav.nausafe.databinding.FragmentHomeBinding {
+- ConstraintLayout rootView
++ RecyclerView recyclerInstructions
++ ConstraintLayout getRoot()
++ {static} FragmentHomeBinding inflate(LayoutInflater)
++ {static} FragmentHomeBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentHomeBinding bind(View)
+}
+
+
+interface ua.androstav.nausafe.data.ContactDao {
++ {abstract}androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAll()
++ {abstract}java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.ContactEntity>>)
++ {abstract}java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.ContactEntity>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
+}
+
+class ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding {
+- ScrollView rootView
++ TextView textContent
++ TextView textTitle
++ ScrollView getRoot()
++ {static} FragmentInstructionDetailBinding inflate(LayoutInflater)
++ {static} FragmentInstructionDetailBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentInstructionDetailBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionViewModel {
+- ua.androstav.nausafe.data.InstructionRepository repository
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> allInstructions
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAllInstructions()
+}
+
+
+class ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding {
+- ScrollView rootView
++ TextView textContent
++ TextView textTitle
++ ScrollView getRoot()
++ {static} FragmentInstructionDetailBinding inflate(LayoutInflater)
++ {static} FragmentInstructionDetailBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentInstructionDetailBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsFragment {
+- ua.androstav.nausafe.databinding.FragmentContactsBinding _binding
+- kotlin.Lazy viewModel$delegate
+- ua.androstav.nausafe.databinding.FragmentContactsBinding getBinding()
+- ua.androstav.nausafe.ui.contacts.ContactsViewModel getViewModel()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.ui.map.MapViewModel {
+- androidx.lifecycle.MutableLiveData<java.lang.String> _text
+- androidx.lifecycle.LiveData<java.lang.String> text
++ androidx.lifecycle.LiveData<java.lang.String> getText()
+}
+
+
+class ua.androstav.nausafe.data.AppDB_Impl {
+- InstructionDao _instructionDao
+- ContactDao _contactDao
+# SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration)
+# InvalidationTracker createInvalidationTracker()
++ void clearAllTables()
+# Map<Class<?>,List<Class<?>>> getRequiredTypeConverters()
++ Set<Class<? extends AutoMigrationSpec>> getRequiredAutoMigrationSpecs()
++ List<Migration> getAutoMigrations(Map<Class<? extends AutoMigrationSpec>,AutoMigrationSpec>)
++ InstructionDao instructionDao()
++ ContactDao contactDao()
+}
+
+
+class ua.androstav.nausafe.databinding.FragmentContactsBinding {
+- ConstraintLayout rootView
++ RecyclerView recyclerContacts
++ ConstraintLayout getRoot()
++ {static} FragmentContactsBinding inflate(LayoutInflater)
++ {static} FragmentContactsBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentContactsBinding bind(View)
+}
+
+
+abstract class ua.androstav.nausafe.data.AppDB {
+- {static} ua.androstav.nausafe.data.AppDB INSTANCE
++ {static} ua.androstav.nausafe.data.AppDB.Companion Companion
++ {abstract}ua.androstav.nausafe.data.InstructionDao instructionDao()
++ {abstract}ua.androstav.nausafe.data.ContactDao contactDao()
+}
+
+
+class ua.androstav.nausafe.data.AppDB$Companion {
++ ua.androstav.nausafe.data.AppDB getDatabase(android.content.Context)
+}
+
+class error.NonExistentClass {
+}
+class ua.androstav.nausafe.databinding.FragmentContactsBinding {
+- ConstraintLayout rootView
++ RecyclerView recyclerContacts
++ ConstraintLayout getRoot()
++ {static} FragmentContactsBinding inflate(LayoutInflater)
++ {static} FragmentContactsBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentContactsBinding bind(View)
+}
+
+
+abstract class ua.androstav.nausafe.data.AppDB {
+- {static} ua.androstav.nausafe.data.AppDB INSTANCE
++ {static} ua.androstav.nausafe.data.AppDB.Companion Companion
++ {abstract}ua.androstav.nausafe.data.InstructionDao instructionDao()
++ {abstract}ua.androstav.nausafe.data.ContactDao contactDao()
+}
+
+
+class ua.androstav.nausafe.data.AppDB$Companion {
++ ua.androstav.nausafe.data.AppDB getDatabase(android.content.Context)
+}
+
+class ua.androstav.nausafe.data.InstructionRepository {
+- ua.androstav.nausafe.data.InstructionDao dao
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> allInstructions
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAllInstructions()
++ java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.Instruction>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
++ java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.Instruction>>)
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsViewModel {
+- ContactRepository repository
++ LiveData<List<ContactEntity>> allContacts
+}
+
+interface ua.androstav.nausafe.data.ContactDao {
++ {abstract}androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAll()
++ {abstract}java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.ContactEntity>>)
++ {abstract}java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.ContactEntity>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
+}
+
+class ua.androstav.nausafe.ui.contacts.ContactsFragment {
+- FragmentContactsBinding? _binding
+-  binding
+- ContactsViewModel viewModel
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.ui.home.HomeFragment {
+- kotlin.Lazy viewModel$delegate
+- ua.androstav.nausafe.ui.home.InstructionAdapter adapter
+- ua.androstav.nausafe.ui.home.InstructionViewModel getViewModel()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
+}
+
+
+class ua.androstav.nausafe.databinding.ActivityMainBinding {
+- ConstraintLayout rootView
++ ConstraintLayout container
++ BottomNavigationView navView
++ ConstraintLayout getRoot()
++ {static} ActivityMainBinding inflate(LayoutInflater)
++ {static} ActivityMainBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityMainBinding bind(View)
+}
+
+
+interface ua.androstav.nausafe.data.InstructionDao {
++ {abstract}androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAll()
++ {abstract}java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.Instruction>>)
++ {abstract}java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.Instruction>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
+}
+
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter {
+- java.util.List<ua.androstav.nausafe.data.ContactEntity> contacts
++ ua.androstav.nausafe.ui.contacts.ContactsAdapter.ContactViewHolder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(ua.androstav.nausafe.ui.contacts.ContactsAdapter.ContactViewHolder,int)
++ int getItemCount()
+}
+
+
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder {
+- ua.androstav.nausafe.databinding.ItemContactBinding binding
++ ua.androstav.nausafe.databinding.ItemContactBinding getBinding()
+}
+
+
+class ua.androstav.nausafe.data.AppDB_Impl {
+- InstructionDao _instructionDao
+- ContactDao _contactDao
+# SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration)
+# InvalidationTracker createInvalidationTracker()
++ void clearAllTables()
+# Map<Class<?>,List<Class<?>>> getRequiredTypeConverters()
++ Set<Class<? extends AutoMigrationSpec>> getRequiredAutoMigrationSpecs()
++ List<Migration> getAutoMigrations(Map<Class<? extends AutoMigrationSpec>,AutoMigrationSpec>)
++ InstructionDao instructionDao()
++ ContactDao contactDao()
+}
+
+
+class ua.androstav.nausafe.ExampleInstrumentedTest {
++ void useAppContext()
+}
+
+class error.NonExistentClass {
+}
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder {
+}
+class ua.androstav.nausafe.ui.contacts.ContactsAdapter {
++ ContactViewHolder onCreateViewHolder(ViewGroup,Int)
++ void onBindViewHolder(ContactViewHolder,Int)
++ void getItemCount()
+}
+
+class ua.androstav.nausafe.ui.contacts.ContactsViewModel {
+- ua.androstav.nausafe.data.ContactRepository repository
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> allContacts
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAllContacts()
+}
+
+
+class ua.androstav.nausafe.data.ContactEntity {
+- int id
+- java.lang.String name
+- java.lang.String phone
++ int getId()
++ java.lang.String getName()
++ java.lang.String getPhone()
++ int component1()
++ java.lang.String component2()
++ java.lang.String component3()
++ ua.androstav.nausafe.data.ContactEntity copy(int,java.lang.String,java.lang.String)
++ boolean equals(java.lang.Object)
++ int hashCode()
++ java.lang.String toString()
+}
+
+
+class ua.androstav.nausafe.data.ContactEntity {
+}
+class ua.androstav.nausafe.databinding.ItemInstructionBinding {
+- CardView rootView
++ TextView textDescription
++ TextView textTitle
++ CardView getRoot()
++ {static} ItemInstructionBinding inflate(LayoutInflater)
++ {static} ItemInstructionBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemInstructionBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.map.MapFragment {
+- ua.androstav.nausafe.databinding.FragmentMapBinding _binding
+- ua.androstav.nausafe.databinding.FragmentMapBinding getBinding()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.data.InstructionDao_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<Instruction> __insertionAdapterOfInstruction
++ Object insertAll(List<Instruction>,Continuation<? super Unit>)
++ LiveData<List<Instruction>> getAll()
++ Object getAllOnce(Continuation<? super List<Instruction>>)
++ {static} List<Class<?>> getRequiredConverters()
+}
+
+
+class ua.androstav.nausafe.databinding.ItemContactBinding {
+- CardView rootView
++ Button buttonCall
++ ImageView contactIcon
++ TextView contactName
++ TextView contactPhone
++ CardView getRoot()
++ {static} ItemContactBinding inflate(LayoutInflater)
++ {static} ItemContactBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemContactBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.data.ContactDao_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<ContactEntity> __insertionAdapterOfContactEntity
++ Object insertAll(List<ContactEntity>,Continuation<? super Unit>)
++ LiveData<List<ContactEntity>> getAll()
++ Object getAllOnce(Continuation<? super List<ContactEntity>>)
++ {static} List<Class<?>> getRequiredConverters()
+}
+
+
+class ua.androstav.nausafe.databinding.FragmentMapBinding {
+- ScrollView rootView
++ PhotoView mapImage1
++ PhotoView mapImage2
++ ScrollView getRoot()
++ {static} FragmentMapBinding inflate(LayoutInflater)
++ {static} FragmentMapBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentMapBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.ui.map.MapViewModel {
+- androidx.lifecycle.MutableLiveData<java.lang.String> _text
+- androidx.lifecycle.LiveData<java.lang.String> text
++ androidx.lifecycle.LiveData<java.lang.String> getText()
+}
+
+
+class ua.androstav.nausafe.ui.home.HomeFragment {
+- kotlin.Lazy viewModel$delegate
+- ua.androstav.nausafe.ui.home.InstructionAdapter adapter
+- ua.androstav.nausafe.ui.home.InstructionViewModel getViewModel()
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
+}
+
+
+class ua.androstav.nausafe.data.Instruction {
+}
+class ua.androstav.nausafe.ui.home.InstructionAdapter {
+- java.util.List<ua.androstav.nausafe.data.Instruction> instructions
++ ua.androstav.nausafe.ui.home.InstructionAdapter.ViewHolder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(ua.androstav.nausafe.ui.home.InstructionAdapter.ViewHolder,int)
++ int getItemCount()
++ void updateData(java.util.List<ua.androstav.nausafe.data.Instruction>)
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder {
+- android.widget.TextView title
++ android.widget.TextView getTitle()
+}
+
+
+class ua.androstav.nausafe.data.ContactRepository {
+- ua.androstav.nausafe.data.ContactDao dao
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> allContacts
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.ContactEntity>> getAllContacts()
++ java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.ContactEntity>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
++ java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.ContactEntity>>)
+}
+
+
+class ua.androstav.nausafe.data.ContactDao_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<ContactEntity> __insertionAdapterOfContactEntity
++ Object insertAll(List<ContactEntity>,Continuation<? super Unit>)
++ LiveData<List<ContactEntity>> getAll()
++ Object getAllOnce(Continuation<? super List<ContactEntity>>)
++ {static} List<Class<?>> getRequiredConverters()
+}
+
+
+class ua.androstav.nausafe.ui.home.InstructionDetailFragment {
+- ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding _binding
+- ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding getBinding()
++ void onCreate(android.os.Bundle)
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void onViewCreated(android.view.View,android.os.Bundle)
++ boolean onOptionsItemSelected(android.view.MenuItem)
++ void onDestroyView()
+}
+
+
+class ua.androstav.nausafe.databinding.ItemInstructionBinding {
+- CardView rootView
++ TextView textDescription
++ TextView textTitle
++ CardView getRoot()
++ {static} ItemInstructionBinding inflate(LayoutInflater)
++ {static} ItemInstructionBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemInstructionBinding bind(View)
+}
+
+
+class ua.androstav.nausafe.MainActivity {
+- ua.androstav.nausafe.databinding.ActivityMainBinding binding
+# void onCreate(android.os.Bundle)
+}
+
+
+interface ua.androstav.nausafe.data.ContactDao {
++ LiveData<List<ContactEntity>> getAll()
++ List<ContactEntity> getAllOnce()
++ void insertAll(List<ContactEntity>)
+}
+
+class ua.androstav.nausafe.ExampleUnitTest {
++ void addition_isCorrect()
+}
+
+class ua.androstav.nausafe.data.InstructionRepository {
+- ua.androstav.nausafe.data.InstructionDao dao
+- androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> allInstructions
++ androidx.lifecycle.LiveData<java.util.List<ua.androstav.nausafe.data.Instruction>> getAllInstructions()
++ java.lang.Object insertAll(java.util.List<ua.androstav.nausafe.data.Instruction>,kotlin.coroutines.Continuation<? super kotlin.Unit>)
++ java.lang.Object getAllOnce(kotlin.coroutines.Continuation<? super java.util.List<ua.androstav.nausafe.data.Instruction>>)
+}
+
+
+
+
+ua.androstav.nausafe.AppCompatActivity <|-- ua.androstav.nausafe.MainActivity
+androidx.fragment.app.Fragment <|-- ua.androstav.nausafe.ui.map.MapFragment
+androidx.lifecycle.AndroidViewModel <|-- ua.androstav.nausafe.ui.home.InstructionViewModel
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ActivityMainBinding
+ua.androstav.nausafe.ui.home.Fragment <|-- ua.androstav.nausafe.ui.home.InstructionDetailFragment
+androidx.fragment.app.Fragment <|-- ua.androstav.nausafe.ui.home.InstructionDetailFragment
+ua.androstav.nausafe.ui.contacts.Adapter <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter
+ua.androstav.nausafe.ui.contacts.ContactsAdapter +.. ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.ui.contacts.ViewHolder <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.ui.map.Fragment <|-- ua.androstav.nausafe.ui.map.MapFragment
+ua.androstav.nausafe.ui.contacts.Fragment <|-- ua.androstav.nausafe.ui.contacts.ContactsFragment
+ua.androstav.nausafe.data.AppDB +.. ua.androstav.nausafe.data.AppDB$Companion
+androidx.room.RoomDatabase <|-- ua.androstav.nausafe.data.AppDB
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ItemContactBinding
+ua.androstav.nausafe.ui.contacts.AndroidViewModel <|-- ua.androstav.nausafe.ui.contacts.ContactsViewModel
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentMapBinding
+ua.androstav.nausafe.ui.home.Adapter <|-- ua.androstav.nausafe.ui.home.InstructionAdapter
+ua.androstav.nausafe.ui.home.InstructionAdapter +.. ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+ua.androstav.nausafe.ui.home.ViewHolder <|-- ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+androidx.lifecycle.ViewModel <|-- ua.androstav.nausafe.ui.map.MapViewModel
+androidx.fragment.app.Fragment <|-- ua.androstav.nausafe.ui.home.HomeFragment
+ua.androstav.nausafe.data.InstructionDao <|.. ua.androstav.nausafe.data.InstructionDao_Impl
+ua.androstav.nausafe.ui.home.AndroidViewModel <|-- ua.androstav.nausafe.ui.home.InstructionViewModel
+androidx.appcompat.app.AppCompatActivity <|-- ua.androstav.nausafe.MainActivity
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentHomeBinding
+ua.androstav.nausafe.ui.home.InstructionAdapter +.. ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+ua.androstav.nausafe.ui.home.ViewHolder <|-- ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+ua.androstav.nausafe.ui.home.Adapter <|-- ua.androstav.nausafe.ui.home.InstructionAdapter
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentHomeBinding
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding
+ua.androstav.nausafe.ui.home.AndroidViewModel <|-- ua.androstav.nausafe.ui.home.InstructionViewModel
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentInstructionDetailBinding
+ua.androstav.nausafe.ui.contacts.Fragment <|-- ua.androstav.nausafe.ui.contacts.ContactsFragment
+ua.androstav.nausafe.ui.map.ViewModel <|-- ua.androstav.nausafe.ui.map.MapViewModel
+ua.androstav.nausafe.data.AppDB <|-- ua.androstav.nausafe.data.AppDB_Impl
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentContactsBinding
+ua.androstav.nausafe.data.RoomDatabase <|-- ua.androstav.nausafe.data.AppDB
+ua.androstav.nausafe.data.AppDB +.. ua.androstav.nausafe.data.AppDB$Companion
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentContactsBinding
+ua.androstav.nausafe.data.RoomDatabase <|-- ua.androstav.nausafe.data.AppDB
+ua.androstav.nausafe.data.AppDB +.. ua.androstav.nausafe.data.AppDB$Companion
+androidx.lifecycle.AndroidViewModel <|-- ua.androstav.nausafe.ui.contacts.ContactsViewModel
+androidx.fragment.app.Fragment <|-- ua.androstav.nausafe.ui.contacts.ContactsFragment
+ua.androstav.nausafe.ui.home.Fragment <|-- ua.androstav.nausafe.ui.home.HomeFragment
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ActivityMainBinding
+ua.androstav.nausafe.ui.contacts.Adapter <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter
+ua.androstav.nausafe.ui.contacts.ContactsAdapter +.. ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.ui.contacts.ViewHolder <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.data.AppDB <|-- ua.androstav.nausafe.data.AppDB_Impl
+ua.androstav.nausafe.ui.contacts.ContactsAdapter +.. ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.ui.contacts.ViewHolder <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter$ContactViewHolder
+ua.androstav.nausafe.ui.contacts.Adapter <|-- ua.androstav.nausafe.ui.contacts.ContactsAdapter
+ua.androstav.nausafe.ui.contacts.AndroidViewModel <|-- ua.androstav.nausafe.ui.contacts.ContactsViewModel
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ItemInstructionBinding
+ua.androstav.nausafe.ui.map.Fragment <|-- ua.androstav.nausafe.ui.map.MapFragment
+ua.androstav.nausafe.data.InstructionDao <|.. ua.androstav.nausafe.data.InstructionDao_Impl
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ItemContactBinding
+ua.androstav.nausafe.data.ContactDao <|.. ua.androstav.nausafe.data.ContactDao_Impl
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.FragmentMapBinding
+ua.androstav.nausafe.ui.map.ViewModel <|-- ua.androstav.nausafe.ui.map.MapViewModel
+ua.androstav.nausafe.ui.home.Fragment <|-- ua.androstav.nausafe.ui.home.HomeFragment
+ua.androstav.nausafe.ui.home.Adapter <|-- ua.androstav.nausafe.ui.home.InstructionAdapter
+ua.androstav.nausafe.ui.home.InstructionAdapter +.. ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+ua.androstav.nausafe.ui.home.ViewHolder <|-- ua.androstav.nausafe.ui.home.InstructionAdapter$ViewHolder
+ua.androstav.nausafe.data.ContactDao <|.. ua.androstav.nausafe.data.ContactDao_Impl
+ua.androstav.nausafe.ui.home.Fragment <|-- ua.androstav.nausafe.ui.home.InstructionDetailFragment
+androidx.viewbinding.ViewBinding <|.. ua.androstav.nausafe.databinding.ItemInstructionBinding
+ua.androstav.nausafe.AppCompatActivity <|-- ua.androstav.nausafe.MainActivity
+@enduml
