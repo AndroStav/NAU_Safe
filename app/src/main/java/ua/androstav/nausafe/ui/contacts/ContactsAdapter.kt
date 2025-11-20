@@ -3,10 +3,11 @@ package ua.androstav.nausafe.ui.contacts
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import ua.androstav.nausafe.databinding.ItemContactBinding
-import ua.androstav.nausafe.data.ContactEntity
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.RecyclerView
+import ua.androstav.nausafe.data.ContactEntity
+import ua.androstav.nausafe.databinding.ItemContactBinding
+import ua.androstav.nausafe.utils.FileLogger
 
 class ContactsAdapter(private val contacts: List<ContactEntity>) :
     RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
@@ -25,6 +26,9 @@ class ContactsAdapter(private val contacts: List<ContactEntity>) :
         holder.binding.contactPhone.text = contact.phone
 
         holder.binding.buttonCall.setOnClickListener {
+            // Логування ключової дії: спроба дзвінка
+            FileLogger.log(holder.itemView.context, "ACTION", "User tapped CALL to: ${contact.name} (${contact.phone})")
+
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = "tel:${contact.phone}".toUri()
             holder.itemView.context.startActivity(intent)

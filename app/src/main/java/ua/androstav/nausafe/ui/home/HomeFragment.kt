@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ua.androstav.nausafe.R
+import ua.androstav.nausafe.utils.FileLogger
 
 class HomeFragment : Fragment() {
 
@@ -26,11 +27,18 @@ class HomeFragment : Fragment() {
         adapter = InstructionAdapter(emptyList())
         recycler.adapter = adapter
 
-        // Підписка на LiveData з ViewModel
         viewModel.allInstructions.observe(viewLifecycleOwner) { instructions ->
-        adapter.updateData(instructions)
+            adapter.updateData(instructions)
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Логування перегляду екрану
+        context?.let {
+            FileLogger.log(it, "SCREEN", "Home Fragment (Instructions) Viewed")
+        }
     }
 }
