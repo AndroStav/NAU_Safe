@@ -31,4 +31,24 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
             }
         }
     }
+
+    fun addContact(name: String, phone: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newContact = ContactEntity(name = name, phone = phone)
+            // Використовуємо існуючий метод insertAll для збереження одного запису
+            repository.insertAll(listOf(newContact))
+        }
+    }
+
+    fun updateContact(contact: ContactEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.update(contact)
+        }
+    }
+
+    fun deleteContact(contact: ContactEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete(contact)
+        }
+    }
 }

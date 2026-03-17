@@ -9,8 +9,10 @@ import ua.androstav.nausafe.data.ContactEntity
 import ua.androstav.nausafe.databinding.ItemContactBinding
 import ua.androstav.nausafe.utils.FileLogger
 
-class ContactsAdapter(private val contacts: List<ContactEntity>) :
-    RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
+class ContactsAdapter(
+    private val contacts: List<ContactEntity>,
+    private val onItemClick: (ContactEntity) -> Unit
+) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
     inner class ContactViewHolder(val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -25,6 +27,7 @@ class ContactsAdapter(private val contacts: List<ContactEntity>) :
         holder.binding.contactName.text = contact.name
         holder.binding.contactPhone.text = contact.phone
 
+        // 1. Клік по іконці телефону (тільки дзвінок)
         holder.binding.buttonCall.setOnClickListener {
             // Логування ключової дії: спроба дзвінка
             FileLogger.log(holder.itemView.context, "ACTION", "User tapped CALL to: ${contact.name} (${contact.phone})")
@@ -32,6 +35,11 @@ class ContactsAdapter(private val contacts: List<ContactEntity>) :
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = "tel:${contact.phone}".toUri()
             holder.itemView.context.startActivity(intent)
+        }
+
+        // 2. ДОДАНО: Клік по самій карточці (редагування/видалення)
+        holder.itemView.setOnClickListener {
+            onItemClick(contact)
         }
     }
 
